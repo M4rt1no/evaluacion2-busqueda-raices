@@ -3,9 +3,14 @@ def f(x):
     return (x - 1) * (x - 1) * (x + 2)
 
 def falsa_posicion(lim_min, lim_max, error, iter_max):
-    iteraciones = []
-    if f(lim_max)*f(lim_min)>=0:
+    if f(lim_max)*f(lim_min)>0:
         return -2
+    elif f(lim_min) == 0:
+        return [[lim_min, f(lim_min)]]
+    elif f(lim_max) == 0:
+        return [[lim_max, f(lim_max)]]
+    
+    iteraciones = []
     for i in range(0, iter_max):
         lim_new = (lim_min * f(lim_max) - lim_max * f(lim_min)) / (f(lim_max) - f(lim_min))
         iteraciones.append([lim_new, f(lim_new)])

@@ -13,13 +13,15 @@ def derivadau(x):
     h = 10**(-7)
     return (u(x+h)-u(x-h))/(2*h)
 
-def newton_raphson(x0, error, iter_max):
-    if derivadaf(x0) or derivadau(x0)==0:
-        return -2
+def newton_raphson_m(x0, error, iter_max):
 
     iteraciones = []
     x=x0
     for i in range(0, iter_max):
+        if derivadaf(x)==0:
+            return -2
+        elif derivadau(x)==0:
+            return -2
         x = x - u(x)/derivadau(x)
         iteraciones.append([x, f(x)])
 
@@ -28,8 +30,6 @@ def newton_raphson(x0, error, iter_max):
         if i>0:
             if abs(iteraciones[i][0]-iteraciones[i-1][0])<error:
                 return iteraciones
-        if derivadaf(x)==0 or derivadau(x)==0:
-            return -2
 
     return -1
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     error=1e-6
     iter_max= 100
 
-    iteraciones = newton_raphson(x0, error, iter_max)
+    iteraciones = newton_raphson_m(x0, error, iter_max)
 
     if iteraciones==-1:
         print("No se encontró raíz en", iter_max, "iteraciones")
