@@ -13,6 +13,7 @@ def nueva_g(x):
 
 bi.f = nueva_f
 fp.f = nueva_f
+pf.f = nueva_f
 pf.g = nueva_g
 se.f = nueva_f
 nr.f = nueva_f
